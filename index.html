@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Selamat Nur Hapizoh! 🎓</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --primary-color: #6a89cc;
+        --secondary-color: #f8c291;
+        --accent-color: #78e08f;
+      }
+
+      body {
+        font-family: "Nunito", sans-serif;
+        background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
+        min-height: 100vh;
+        color: #555;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+      }
+
+      .message-container {
+        max-width: 600px;
+        margin: 30px auto;
+        padding: 20px;
+      }
+
+      .message-card {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        position: relative;
+        min-height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        transition: all 0.5s ease;
+      }
+
+      .message-content {
+        font-size: 1.3rem;
+        line-height: 1.6;
+        margin-bottom: 30px;
+        color: #555;
+      }
+
+      .highlight {
+        font-family: "Pacifico", cursive;
+        font-size: 2rem;
+        color: var(--primary-color);
+        margin: 15px 0;
+      }
+
+      .btn-next {
+        background: linear-gradient(135deg, var(--primary-color), #4a69bd);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn-next:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .btn-next:active {
+        transform: translateY(1px);
+      }
+
+      .decoration {
+        position: absolute;
+        font-size: 2rem;
+        opacity: 0.7;
+        z-index: 1;
+      }
+
+      .confetti {
+        position: fixed;
+        width: 15px;
+        height: 15px;
+        background: var(--accent-color);
+        border-radius: 50%;
+        opacity: 0.7;
+        z-index: 9999;
+        pointer-events: none;
+      }
+
+      .emoji {
+        font-size: 3rem;
+        margin: 20px 0;
+        animation: bounce 2s infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .progress-bar {
+        height: 5px;
+        background: #e0e0e0;
+        border-radius: 10px;
+        margin: 20px 0;
+        overflow: hidden;
+      }
+
+      .progress {
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          var(--primary-color),
+          var(--accent-color)
+        );
+        width: 0%;
+        transition: width 0.5s ease;
+      }
+
+      .step-indicator {
+        font-size: 0.9rem;
+        color: #888;
+        margin-bottom: 10px;
+      }
+
+      .final-celebration {
+        font-size: 4rem;
+        color: var(--primary-color);
+        animation: pulse 1.5s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .photo-frame {
+        width: 150px;
+        height: 150px;
+        margin: 20px auto;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--secondary-color), #fad390);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 3rem;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        border: 5px solid white;
+      }
+
+      .music-control {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+      }
+
+      .music-btn {
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .music-btn:hover {
+        transform: scale(1.1);
+      }
+
+      .signature {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 2px solid var(--primary-color);
+        font-family: "Pacifico", cursive;
+        font-size: 1.5rem;
+        color: var(--primary-color);
+      }
+
+      .quote {
+        font-style: italic;
+        color: #666;
+        margin: 15px 0;
+        font-size: 1.1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Music Control -->
+    <div class="music-control">
+      <button id="musicToggle" class="music-btn">
+        <i class="fas fa-volume-up"></i>
+      </button>
+    </div>
+
+    <div class="message-container">
+      <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+      </div>
+      <div class="step-indicator" id="stepIndicator">1/15</div>
+
+      <div class="message-card" id="messageCard">
+        <!-- Pesan akan diisi oleh JavaScript -->
+      </div>
+
+      <div class="text-center mt-4">
+        <button id="nextBtn" class="btn btn-next">
+          Lanjut <i class="fas fa-arrow-right ms-2"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="backgroundMusic" loop>
+      <source
+        src="https://archive.org/download/arabic-nasheed/arabic.mp3"
+        type="audio/mp3"
+      />
+    </audio>
+
+    <!-- Bootstrap 5 JS with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Data pesan (15 slide)
+      const messages = [
+        {
+          content: "Hai Nur Hapizoh! 👋",
+          emoji: "👋",
+          decoration: "✨",
+        },
+        {
+          content: "Selamat yah! 🎉",
+          emoji: "🎉",
+          decoration: "🌟",
+        },
+        {
+          content: "Udah dapet gelar QH nih! 🎓",
+          emoji: "🎓",
+          decoration: "💫",
+        },
+        {
+          content: "Wihh keren banget pasti! 🔥",
+          emoji: "🔥",
+          decoration: "⭐",
+        },
+        {
+          content: "Perjuangan selama ini akhirnya berhasil! 💪",
+          emoji: "💪",
+          decoration: "🌠",
+        },
+        {
+          content: "Rasanya pasti seneng banget ya? 😊",
+          emoji: "😊",
+          decoration: "🔆",
+        },
+        {
+          content: "Dari belajar sampai begadang, akhirnya berhasil juga! 📚",
+          emoji: "📚",
+          decoration: "💖",
+        },
+        {
+          content: "Semoga ilmunya bermanfaat terus ya! 🌟",
+          emoji: "🌟",
+          decoration: "🎯",
+        },
+        {
+          content: "Dan jadi berkah buat semua orang! 🙏",
+          emoji: "🙏",
+          decoration: "🌈",
+        },
+        {
+          content: "Jangan lupa terus mengamalkan ilmunya! 💫",
+          emoji: "💫",
+          decoration: "⚡",
+        },
+        {
+          content: "Ini baru awal lho! 🚀",
+          emoji: "🚀",
+          decoration: "🎨",
+        },
+        {
+          content: "Masih banyak prestasi lain yang menunggu! 🏆",
+          emoji: "🏆",
+          decoration: "🎪",
+        },
+        {
+          content: "Tetap semangat ya! 💖",
+          emoji: "💖",
+          decoration: "🎭",
+        },
+        {
+          content: "Kamu hebat! 👍",
+          emoji: "👍",
+          decoration: "🎸",
+        },
+        {
+          content: "Sekali lagi, selamat ya Nur Hapizoh! 🎊",
+          emoji: "🎊",
+          decoration: "🎁",
+          isFinal: true,
+        },
+      ];
+
+      let currentStep = 0;
+      const totalSteps = messages.length;
+
+      // Elemen DOM
+      const messageCard = document.getElementById("messageCard");
+      const nextBtn = document.getElementById("nextBtn");
+      const progress = document.getElementById("progress");
+      const stepIndicator = document.getElementById("stepIndicator");
+      const backgroundMusic = document.getElementById("backgroundMusic");
+      const musicToggle = document.getElementById("musicToggle");
+
+      // Fungsi untuk menampilkan pesan
+      function showMessage(step) {
+        const message = messages[step];
+
+        let html = "";
+
+        // Tambahkan elemen dekorasi
+        html += `<div class="decoration" style="top: 20px; left: 20px;">${message.decoration}</div>`;
+        html += `<div class="decoration" style="bottom: 20px; right: 20px;">${message.decoration}</div>`;
+
+        // Tambahkan emoji
+        html += `<div class="emoji">${message.emoji}</div>`;
+
+        // Tambahkan konten
+        html += `<div class="message-content">${message.content}</div>`;
+
+        // Jika pesan final, tambahkan elemen khusus
+        if (message.isFinal) {
+          html += `<div class="final-celebration">🎉 SELAMAT! 🎉</div>`;
+          html += `<div class="photo-frame mt-4">
+                            <i class="fas fa-graduation-cap"></i>
+                         </div>`;
+          html += `<div class="quote">"Semoga sukses selalu dan menjadi wanita shalehah"</div>`;
+          html += `<div class="signature">Dari Teman Mu<br>Redi Elwaji Aspan</div>`;
+          nextBtn.innerHTML = 'Selesai <i class="fas fa-check ms-2"></i>';
+        }
+
+        messageCard.innerHTML = html;
+
+        // Update progress bar
+        const progressPercent = ((step + 1) / totalSteps) * 100;
+        progress.style.width = `${progressPercent}%`;
+
+        // Update step indicator
+        stepIndicator.textContent = `${step + 1}/${totalSteps}`;
+
+        // Jika sudah di step terakhir, ubah tombol
+        if (step === totalSteps - 1) {
+          nextBtn.onclick = function () {
+            createConfetti();
+            this.innerHTML = '<i class="fas fa-heart me-2"></i> Terima Kasih!';
+            this.disabled = true;
+
+            // Mainkan konfeti lebih banyak di akhir
+            for (let i = 0; i < 3; i++) {
+              setTimeout(() => createConfetti(), i * 500);
+            }
+          };
+        }
+      }
+
+      // Fungsi untuk membuat konfeti
+      function createConfetti() {
+        const colors = [
+          "#6a89cc",
+          "#f8c291",
+          "#78e08f",
+          "#e55039",
+          "#f6b93b",
+          "#b71540",
+          "#0c2461",
+        ];
+
+        for (let i = 0; i < 30; i++) {
+          const confetti = document.createElement("div");
+          confetti.className = "confetti";
+          confetti.style.left = Math.random() * 100 + "vw";
+          confetti.style.animationDelay = Math.random() * 2 + "s";
+          confetti.style.background =
+            colors[Math.floor(Math.random() * colors.length)];
+
+          // Random shape
+          if (Math.random() > 0.5) {
+            confetti.style.borderRadius = "50%";
+          } else {
+            confetti.style.borderRadius = "0";
+            confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+          }
+
+          // Random size
+          const size = Math.random() * 15 + 5;
+          confetti.style.width = `${size}px`;
+          confetti.style.height = `${size}px`;
+
+          // Animasi jatuh
+          confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+
+          document.body.appendChild(confetti);
+
+          // Hapus confetti setelah animasi selesai
+          setTimeout(() => {
+            if (confetti.parentNode) {
+              confetti.remove();
+            }
+          }, 5000);
+        }
+      }
+
+      // Event listener untuk tombol next
+      nextBtn.addEventListener("click", function () {
+        if (currentStep < totalSteps - 1) {
+          currentStep++;
+          showMessage(currentStep);
+
+          // Tambahkan efek konfeti di beberapa step
+          if ([2, 5, 8, 11].includes(currentStep)) {
+            createConfetti();
+          }
+        }
+      });
+
+      // Music control
+      let isMusicPlaying = false;
+
+      musicToggle.addEventListener("click", function () {
+        if (isMusicPlaying) {
+          backgroundMusic.pause();
+          this.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        } else {
+          backgroundMusic.play().catch((e) => {
+            console.log("Autoplay prevented:", e);
+            // Fallback - user perlu interaksi dulu
+            alert("Klik OK untuk memutar musik");
+            backgroundMusic.play();
+          });
+          this.innerHTML = '<i class="fas fa-volume-up"></i>';
+        }
+        isMusicPlaying = !isMusicPlaying;
+      });
+
+      // Inisialisasi - tampilkan pesan pertama
+      showMessage(currentStep);
+
+      // Tambahkan sedikit konfeti saat halaman dimuat
+      window.addEventListener("load", function () {
+        setTimeout(() => {
+          createConfetti();
+
+          // Coba mainkan musik otomatis (dengan interaksi user)
+          setTimeout(() => {
+            // Hanya coba mainkan jika user sudah berinteraksi
+            if (document.hasFocus()) {
+              backgroundMusic
+                .play()
+                .then(() => {
+                  isMusicPlaying = true;
+                  musicToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
+                })
+                .catch((e) => {
+                  console.log(
+                    "Autoplay prevented, waiting for user interaction"
+                  );
+                });
+            }
+          }, 1000);
+        }, 500);
+      });
+
+      // Style untuk animasi confetti
+      if (!document.querySelector("#confetti-style")) {
+        const style = document.createElement("style");
+        style.id = "confetti-style";
+        style.textContent = `
+                @keyframes fall {
+                    0% {
+                        transform: translateY(-100px) rotate(0deg);
+                        opacity: 1;
+                    }
+                    100% {
+                        transform: translateY(100vh) rotate(360deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+        document.head.appendChild(style);
+      }
+    </script>
+  </body>
+</html>
